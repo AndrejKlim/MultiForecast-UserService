@@ -1,22 +1,22 @@
 package com.multiforecast.userservice.mapper;
 
 
-import com.multiforecast.userservice.persistance.entity.Location;
-import com.multiforecast.userservice.service.dto.LocationDTO;
+import com.multiforecast.userservice.persistance.entity.LocationEntity;
+import com.multiforecast.userservice.service.dto.Location;
 
 public class LocationMapper {
     private LocationMapper() {
     }
 
-    public static LocationDTO toDTO(Location location) {
-        return new LocationDTO(location.getLocationId(), location.getLon(), location.getLat());
+    public static Location toDTO(LocationEntity locationEntity) {
+        return new Location(locationEntity.getLocationId(), locationEntity.getLon(), locationEntity.getLat());
     }
 
-    public static Location toEntity(LocationDTO locationDTO) {
-        Location location = new Location();
-        location.setLocationId(locationDTO.locationId());
-        location.setLat(locationDTO.lat());
-        location.setLon(locationDTO.lon());
-        return location;
+    public static LocationEntity toEntity(Location locationDTO) {
+        LocationEntity locationEntity = new LocationEntity();
+        locationEntity.setLocationId(locationDTO.locationId());
+        locationEntity.setLat(locationDTO.lat());
+        locationEntity.setLon(locationDTO.lon());
+        return locationEntity;
     }
 }

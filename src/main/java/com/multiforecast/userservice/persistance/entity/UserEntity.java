@@ -3,6 +3,7 @@ package com.multiforecast.userservice.persistance.entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -11,20 +12,21 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-public class User {
+public class UserEntity {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long userId;
     @ManyToOne()
     @JoinColumn(name = "location_id")
-    private Location location;
+    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
+    private LocationEntity location;
 
-    public User(Long userId, Location location) {
+    public UserEntity(Long userId, LocationEntity locationEntity) {
         this.userId = userId;
-        this.location = location;
+        this.location = locationEntity;
     }
 
-    public User() {
+    public UserEntity() {
     }
 }

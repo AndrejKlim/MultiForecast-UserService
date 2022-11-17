@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-public class Location {
+public class LocationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "location_id")
@@ -23,11 +23,11 @@ public class Location {
     @Column(name = "lat")
     private Float lat;
 
-    public Location(Float lon, Float lat) {
+    public LocationEntity(Float lon, Float lat) {
         this.lon = lon;
         this.lat = lat;
     }
 
-    public Location() {
+    public LocationEntity() {
     }
 }
