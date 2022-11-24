@@ -6,6 +6,7 @@ import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -20,12 +21,16 @@ public class UserEntity {
     @ManyToOne()
     @JoinColumn(name = "location_id")
     @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
+    @ToString.Exclude
     private LocationEntity location;
-
-    public UserEntity(Long userId, LocationEntity locationEntity) {
-        this.userId = userId;
-        this.location = locationEntity;
-    }
+    
+    @ManyToMany
+    @JoinTable(
+            name = "user_field_preferences",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "pref_id"))
+    @ToString.Exclude
+    private List<ForecastFieldUserPreferenceEntity> forecastFieldPreferenceList;
 
     public UserEntity() {
     }
